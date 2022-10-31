@@ -1,0 +1,29 @@
+{
+  "name": "pyconph",
+  "version": "1.0.0",
+  "description": "Pycon PH",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp",
+    "build-css": "tailwindcss -i ./sass/styles.scss -o ../assets/css/styles.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "autoprefixer": "^10.4.13",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-purgecss": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "precss": "^4.0.0",
+    "sass": "^1.55.0",
+    "tailwindcss": "^3.2.1"
+  }
+}
