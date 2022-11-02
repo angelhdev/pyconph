@@ -46,3 +46,23 @@
     font-weight: 700;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Tagalog-Doctrina-1593';
+    src: url('../fonts/Tagalog-Doctrina-1593/Tagalog-Doctrina-1593.eot');
+    src: url('../fonts/Tagalog-Doctrina-1593/Tagalog-Doctrina-1593.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Tagalog-Doctrina-1593/Tagalog-Doctrina-1593.woff2') format('woff2'),
+         url('../fonts/Tagalog-Doctrina-1593/Tagalog-Doctrina-1593.woff') format('woff'),
+         url('../fonts/Tagalog-Doctrina-1593/Tagalog-Doctrina-1593-Regular.ttf') format('truetype'),
+         url('../fonts/Tagalog-Doctrina-1593/Tagalog-Doctrina-1593.svg#UbuntuBold') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Baybayin-Sisil';
+    src: url('../fonts/Baybayin-Sisil/Baybayin-Sisil.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+

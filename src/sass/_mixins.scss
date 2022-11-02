@@ -1,0 +1,26 @@
+@use 'sass:math';
+
+$breakpoints: (
+    sm: 600px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
+);
+
+@mixin respond-to($breakpoint) {
+    @if is-number($breakpoint) {
+        @media screen and (min-width: #{$breakpoint}px) {
+            @content;
+        }
+    } @else {
+        @if map-has-key($breakpoints, $breakpoint) {
+            $value: map-get($breakpoints, $breakpoint);
+
+            @media screen and (min-width: $value) {
+                @content;
+            }
+        } @else {
+            @warn "Unknown `#{$breakpoint}` in $breakpoints";
+        }
+    }
+}

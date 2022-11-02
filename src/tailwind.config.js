@@ -5,9 +5,29 @@ module.exports = {
 	content: ['../**/*.html'],
 	theme: {
 		extend: {
+			screens: {
+				sm: '600px',
+				md: '768px',
+				lg: '1024px',
+				'2xl': '1280px',
+			},
 			colors: {
-				yelloworange: '#FFAD39',
-				cioccolato: '#4A300A',
+				white: {
+					DEFAULT: '#FFFFFF',
+					60: 'rgba(255,255,255,0.6)',
+					70: 'rgba(255,255,255,0.7)',
+				},
+				bianca: '#FBF7EE',
+				cioccolato: {
+					DEFAULT: '#4A300A',
+					60: 'rgba(74, 48, 10, 0.6)',
+				},
+				nileblue: '#1A2851',
+				yelloworange: {
+					DEFAULT: '#FFAD39',
+					70: 'rgba(255,173,57,0.7)',
+				},
+				woodsmoke: '#141515',
 			},
 			spacing: {
 				0: '0',
@@ -58,11 +78,52 @@ module.exports = {
 				47: '2.9375rem',
 				48: '3rem',
 				50: '3.125rem',
+				68: '4.25rem',
+				70: '4.375rem',
+				90: '5.625rem',
+				102: '6.375rem',
+				125: '7.8125rem',
+				172: '10.75rem',
+				150: '9.375rem',
+				// 248: '15.5rem',
+				290: '17.5rem',
+				310: '19.375rem',
+				380: '23.75rem',
+				549: '34.313rem',
+				600: '37.5rem',
+				850: '53.125rem',
+				1150: '71.875rem',
 			},
 			fontFamily: {
 				ubuntu: 'Ubuntu',
+				tagalogdoctrina1593: 'Tagalog-Doctrina-1593',
+				baybayinsisil: 'Baybayin-Sisil',
 			},
 			fontSize: (theme) => ({
+				...theme('spacing'),
+			}),
+			minHeight: (theme) => ({
+				...defaultTheme.minHeight,
+				...theme('spacing'),
+			}),
+			maxHeight: (theme) => ({
+				...theme('spacing'),
+			}),
+			maxWidth: (theme) => ({
+				...theme('spacing'),
+			}),
+			minWidth: (theme) => ({
+				...theme('spacing'),
+			}),
+			inset: (theme) => ({
+				...theme('spacing'),
+			}),
+			lineHeight: (theme) => ({
+				...defaultTheme.lineHeight,
+				primary: '1.293rem',
+				...theme('spacing'),
+			}),
+			gap: (theme) => ({
 				...theme('spacing'),
 			}),
 		},

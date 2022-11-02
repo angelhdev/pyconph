@@ -1,10 +1,123 @@
 @import '_fonts.scss';
+@import '_mixins.scss';
 
 @tailwind base;
 @tailwind components;
 
 @tailwind utilities;
 
+@layer utilities {
+    .img-bg {
+        @apply absolute top-0 left-0;
+    }
+
+    .img-cover {
+        @apply img-bg object-cover;
+    }
+
+    .img-contain {
+        @apply img-bg object-contain;
+    }
+
+    .img-fit-none {
+        @apply img-bg object-none;
+    }
+
+    .md\:img-cover {
+        @include respond-to(md) {
+            @apply img-bg object-cover;
+        }
+    }
+    
+	@variants responsive {
+        .bg-img-1 {
+			background: url('../img/bg/bg-1.png') #FFAD39;
+            background-size: contain;
+		}
+
+        .bg-sm-img-1 {
+			background: url('../img/bg/bg-1.png') #FFAD39;
+            background-size: cover;
+            background-repeat: no-repeat;
+		}
+
+        .bg-img-2 {
+			background-image: url('../img/bg/bg-2.svg');
+		}
+
+        .bg-img-3 {
+			background-image: url('../img/bg/bg-3.svg');
+		}
+
+        .bg-img-4{
+			background-image: url('../img/bg/bg-4.svg');
+		}
+
+        .bg-img-b-1 {
+            background: url('../img/bg/bg-bottom-1.svg') no-repeat bottom;
+            background-size: contain;
+        }
+
+        .bg-img-b-2 {
+            background: url('../img/bg/bg-bottom-2.svg') no-repeat bottom #ffffff;
+            background-size: contain;
+        }
+
+        .bg-img-b-3 {
+            background: url('../img/bg/bg-bottom-3.svg') no-repeat bottom;
+            background-size: contain;
+        }
+
+        .bg-img-b-4 {
+            background: url('../img/bg/bg-bottom-4.svg') no-repeat bottom #FBF7EE;
+            background-size: contain;
+        }
+
+
+
+
+
+
+
+        .bg-bottom-img2 {
+            background: url('../img/bg/bg-bottom2.svg') no-repeat bottom right;
+            background-size: contain;
+        }
+
+		
+
+        .bg-image-2 {
+			background-image: url('../img/bg/bg-2.svg');
+		}
+        .bg-image-3 {
+			background-image: url('../img/bg/bg-3.svg');
+		}
+
+        .bg-bottom-image-4 {
+            background: url('../img/bg/bg-4.svg') no-repeat bottom right;
+            background-size: contain;
+        }
+
+        .bg-bottom-image-5 {
+            background: url('../img/bg/bg-5.svg') no-repeat bottom right #FBF7EE;
+            background-size: auto;
+        }
+
+        .bg-image-6 {
+			background-image: url('../img/bg/bg-6.svg');
+		}
+
+        .bg-bottom-image-7 {
+            background: url('../img/bg/bg-7.svg') no-repeat bottom right #FBF7EE;
+            background-size: auto;
+        }
+	}
+}
+
 body {
 	@apply font-ubuntu;
+}
+
+p {
+    @apply text-cioccolato-60 text-18 mb-12 leading-primary;
 }

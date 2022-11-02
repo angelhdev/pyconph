@@ -7,7 +7,7 @@ const purgecss = require('@fullhuman/postcss-purgecss');
 const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const tailwindcss = require('tailwindcss');
-const uglify = require('gulp-uglify');
+const terser = require('gulp-terser');
 const htmlmin = require('gulp-htmlmin');
 
 const PUBLIC_CSS = '../assets/css';
@@ -36,7 +36,7 @@ function generateCSS(cb) {
 }
 
 function generateJs(cb) {
-	src(jsSources).pipe(concat('app.js')).pipe(uglify()).pipe(dest(PUBLIC_JS));
+	src(jsSources).pipe(concat('app.js')).pipe(terser()).pipe(dest(PUBLIC_JS));
 
 	cb();
 }
