@@ -39,6 +39,10 @@
         .bg-img-8 {
             background-image: url('../img/bg/bg-8.svg');
         }
+
+        .bg-img-9 {
+            background-image: url('../img/bg/bg-9.svg');
+        }
 	}
 }
 
@@ -49,3 +53,35 @@ body {
 p {
     @apply text-cioccolato-60 text-18 mb-12 leading-primary;
 }
+section {
+    block-size: 100%;
+  }
+  
+  .sponsors {
+    scroll-snap-type: y mandatory;
+  }
+  
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  section:nth-of-type(even) {
+    color: white;
+    background: black;
+  }
+  
+  section:nth-of-type(odd) {
+    color: black;
+    background: white;
+  }
+  
+  body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    font-size: 4rem;
+  }

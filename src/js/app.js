@@ -16,6 +16,7 @@ scrollIcon.addEventListener("click", () => {
 });
 
 
+
 let tabsContainer = document.querySelector('#tabs');
 let tabTogglers = tabsContainer.querySelectorAll('#tabs a');
 
@@ -43,4 +44,28 @@ tabTogglers.forEach(function (toggler) {
 		e.target.parentElement.classList.remove('text-cioccolato');
 		e.target.parentElement.classList.add('bg-yelloworange', 'text-white');
 	});
+});
+
+const scrollSponsors = document.querySelector("#sponsors");
+
+// var results, result, timeout;
+// var delay = 500;
+
+// $(window).scroll(function() {
+//     clearTimeout(timeout);
+    
+//     timeout = setTimeout(function() {
+//         // 
+//     }, delay);
+// });
+
+var targetOffset = $("#sponsors").offset().top;
+
+var $w = $(window).scroll(function(){
+    if ( $w.scrollTop() > targetOffset ) {   
+        $('#con2').css({"border-top":"2px solid #f4f5f8"});
+        $('#con3').css({"border-top":"2px solid #2e375b"});
+    } else {
+      // ...
+    }
 });

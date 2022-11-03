@@ -16,7 +16,10 @@ const PUBLIC_JS = '../assets/js';
 const SOURCE_STYLESHEET = '../assets/css/styles.css';
 const TAILWIND_CONFIG = './tailwind.config.js';
 
-var jsSources = ['js/app.js'];
+var jsSources = [
+	'js/lib/jquery-3.6.1.min.js',
+	'js/app.js'
+];
 
 var sassSources = ['sass/styles.scss'];
 
