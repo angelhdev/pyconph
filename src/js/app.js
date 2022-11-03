@@ -1,13 +1,19 @@
 // Testing gsap
 let scrollIcon = document.querySelector('.icon-scroll');
-console.log('1245')
-if (scrollIcon) {
-    scrollIcon.onclick = function(e) {
-        e.preventDefault();
-		console.log('12')
-        gsap.to(window, {duration: .5, scrollTo:".feature"});
-    };
-}
+
+// if (scrollIcon) {
+//     scrollIcon.onclick = function(e) {
+//         e.preventDefault();
+//         gsap.to(window, {duration: 1, scrollTo:".main"});
+//     };
+// }
+
+scrollIcon.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
 
 
 let tabsContainer = document.querySelector('#tabs');
