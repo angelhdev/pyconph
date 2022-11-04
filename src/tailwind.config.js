@@ -135,6 +135,9 @@ module.exports = {
 			gap: (theme) => ({
 				...theme('spacing'),
 			}),
+			borderWidth: (theme) => ({
+				...theme('spacing'),
+			}),
 		},
 	},
 	plugins: [],

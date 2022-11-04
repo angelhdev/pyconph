@@ -1,5 +1,6 @@
 @import '_fonts.scss';
 @import '_mixins.scss';
+@import '_tabs.scss';
 
 @tailwind base;
 @tailwind components;
@@ -8,41 +9,41 @@
 
 @layer utilities {
 	@variants responsive {
-        .bg-img-1 {
+		.bg-img-1 {
 			background-image: url('../img/bg/bg-1.png');
 		}
 
-        .bg-img-2 {
-            background-image: url('../img/bg/bg-2.svg');
-        }
+		.bg-img-2 {
+			background-image: url('../img/bg/bg-2.svg');
+		}
 
-        .bg-img-3 {
+		.bg-img-3 {
 			background-image: url('../img/bg/bg-3.svg');
 		}
 
-        .bg-img-4 {
+		.bg-img-4 {
 			background-image: url('../img/bg/bg-4.svg');
 		}
 
-        .bg-img-5 {
+		.bg-img-5 {
 			background-image: url('../img/bg/bg-5.svg');
 		}
 
-        .bg-img-6 {
-            background-image: url('../img/bg/bg-6.svg');
-        }
+		.bg-img-6 {
+			background-image: url('../img/bg/bg-6.svg');
+		}
 
-        .bg-img-7{
+		.bg-img-7 {
 			background-image: url('../img/bg/bg-7.svg');
 		}
 
-        .bg-img-8 {
-            background-image: url('../img/bg/bg-8.svg');
-        }
+		.bg-img-8 {
+			background-image: url('../img/bg/bg-8.svg');
+		}
 
-        .bg-img-9 {
-            background-image: url('../img/bg/bg-9.svg');
-        }
+		.bg-img-9 {
+			background-image: url('../img/bg/bg-9.svg');
+		}
 	}
 }
 
@@ -51,37 +52,45 @@ body {
 }
 
 p {
-    @apply text-cioccolato-60 text-18 mb-12 leading-primary;
+	@apply text-cioccolato-60 text-18 mb-12 leading-primary;
 }
 section {
-    block-size: 100%;
-  }
-  
-  .sponsors {
-    scroll-snap-type: y mandatory;
-  }
-  
-  section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  section:nth-of-type(even) {
-    color: white;
-    background: black;
-  }
-  
-  section:nth-of-type(odd) {
-    color: black;
-    background: white;
-  }
-  
-  body {
-    margin: 0;
-    font-family: system-ui, sans-serif;
-    font-size: 4rem;
-  }
+	block-size: 100%;
+}
+
+.sponsors {
+	scroll-snap-type: y mandatory;
+}
+
+section {
+	scroll-snap-align: start;
+	scroll-snap-stop: always;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+section:nth-of-type(even) {
+	color: white;
+	background: black;
+}
+
+section:nth-of-type(odd) {
+	color: black;
+	background: white;
+}
+
+body {
+	margin: 0;
+	font-family: system-ui, sans-serif;
+	font-size: 4rem;
+}
+
+.py-zoom-in {
+	transition: transform 0.5s, filter 1.5s ease-in-out;
+}
+
+.py-zoom-in:hover {
+	transform: scale(1.1);
+}

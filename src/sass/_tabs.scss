@@ -1,0 +1,15 @@
+.tab {
+	overflow: hidden;
+}
+
+.tab button {
+	@apply text-cioccolato;
+}
+
+.tab button.active {
+	@apply bg-yelloworange text-white;
+}
+
+.tabcontent {
+	display: none;
+}

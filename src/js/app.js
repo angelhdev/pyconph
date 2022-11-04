@@ -8,14 +8,12 @@ let scrollIcon = document.querySelector('.icon-scroll');
 //     };
 // }
 
-scrollIcon.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+scrollIcon.addEventListener('click', () => {
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth',
+	});
 });
-
-
 
 let tabsContainer = document.querySelector('#tabs');
 let tabTogglers = tabsContainer.querySelectorAll('#tabs a');
@@ -46,26 +44,50 @@ tabTogglers.forEach(function (toggler) {
 	});
 });
 
-const scrollSponsors = document.querySelector("#sponsors");
+const scrollSponsors = document.querySelector('#sponsors');
 
 // var results, result, timeout;
 // var delay = 500;
 
 // $(window).scroll(function() {
 //     clearTimeout(timeout);
-    
+
 //     timeout = setTimeout(function() {
-//         // 
+//         //
 //     }, delay);
 // });
 
-var targetOffset = $("#sponsors").offset().top;
+var targetOffset = $('#sponsors').offset().top;
 
-var $w = $(window).scroll(function(){
-    if ( $w.scrollTop() > targetOffset ) {   
-        $('#con2').css({"border-top":"2px solid #f4f5f8"});
-        $('#con3').css({"border-top":"2px solid #2e375b"});
-    } else {
-      // ...
-    }
+var $w = $(window).scroll(function () {
+	if ($w.scrollTop() > targetOffset) {
+		$('#con2').css({ 'border-top': '2px solid #f4f5f8' });
+		$('#con3').css({ 'border-top': '2px solid #2e375b' });
+	} else {
+		// ...
+	}
 });
+
+function toggleTab(evt, tabId) {
+	var i, tabcontent, tablinks;
+	tabcontent = document.getElementsByClassName('tabcontent');
+	for (i = 0; i < tabcontent.length; i++) {
+		// tabcontent[i].style.display = 'none';
+
+		tabcontent[i].classList.remove('block');
+		tabcontent[i].classList.add('hidden');
+	}
+	tablinks = document.getElementsByClassName('tablinks');
+	for (i = 0; i < tablinks.length; i++) {
+		// tablinks[i].className = tablinks[i].className.replace(' active', '');
+
+		tablinks[i].classList.remove('active');
+	}
+
+	document.getElementById(tabId).classList.remove('hidden');
+	document.getElementById(tabId).classList.add('block');
+	evt.currentTarget.classList.add('active');
+
+	// document.getElementById(tabId).style.display = 'block';
+	// evt.currentTarget.className += ' active';
+}
