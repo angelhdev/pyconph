@@ -18,7 +18,8 @@ const TAILWIND_CONFIG = './tailwind.config.js';
 
 var jsSources = [
 	'js/lib/jquery-3.6.1.min.js',
-	'js/app.js'
+	'js/lib/swiper-bundle.min.js',
+	'js/app.js',
 ];
 
 var sassSources = ['sass/styles.scss'];
