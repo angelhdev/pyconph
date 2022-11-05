@@ -751,6 +751,9 @@ video {
 .gap-5 {
   gap: 0.3125rem;
 }
+.self-start {
+  align-self: flex-start;
+}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1840,15 +1843,20 @@ button.swiper-pagination-bullet {
   .swiper-vertical > .swiper-pagination-bullets, .swiper-pagination-vertical.swiper-pagination-bullets {
     top: 50% !important;
   }
+  .vertical-slider-show {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #FFAD39;
+    z-index: 999;
+    width: 100%;
+  }
 }
 
-.vertical-slider-show {
-  position: fixed;
-  top: 0;
-  right: 0;
-  background: #FFAD39;
-  z-index: 999;
-  width: 100%;
+@media screen and (min-width: 768px) {
+  .md\:overflow-hidden {
+    overflow: hidden;
+  }
 }
 
 .swiper-fixed {
@@ -1941,10 +1949,6 @@ button.swiper-pagination-bullet {
     padding-top: 0;
     padding-bottom: 0;
   }
-  .md\:px-0 {
-    padding-left: 0;
-    padding-right: 0;
-  }
   .md\:px-50 {
     padding-left: 3.125rem;
     padding-right: 3.125rem;
@@ -1952,6 +1956,10 @@ button.swiper-pagination-bullet {
   .md\:py-32 {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+  .md\:px-0 {
+    padding-left: 0;
+    padding-right: 0;
   }
   .md\:pt-0 {
     padding-top: 0;
@@ -1970,6 +1978,9 @@ button.swiper-pagination-bullet {
   }
   .md\:pr-20 {
     padding-right: 1.25rem;
+  }
+  .md\:pl-50 {
+    padding-left: 3.125rem;
   }
   .md\:pr-50 {
     padding-right: 3.125rem;
@@ -2043,10 +2054,6 @@ button.swiper-pagination-bullet {
     padding-top: 7.8125rem;
     padding-bottom: 7.8125rem;
   }
-  .lg\:px-25 {
-    padding-left: 1.5625rem;
-    padding-right: 1.5625rem;
-  }
   .lg\:px-172 {
     padding-left: 10.75rem;
     padding-right: 10.75rem;
@@ -2072,11 +2079,17 @@ button.swiper-pagination-bullet {
   .xl\:max-h-380 {
     max-height: 23.75rem;
   }
-  .xl\:w-290 {
-    width: 18.125rem;
+  .xl\:w-600 {
+    width: 37.5rem;
   }
   .xl\:w-390 {
     width: 24.375rem;
+  }
+  .xl\:w-290 {
+    width: 18.125rem;
+  }
+  .xl\:self-end {
+    align-self: flex-end;
   }
   .xl\:bg-contain {
     background-size: contain;
@@ -2085,9 +2098,9 @@ button.swiper-pagination-bullet {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
-  .xl\:px-225 {
-    padding-left: 14.063rem;
-    padding-right: 14.063rem;
+  .xl\:px-0 {
+    padding-left: 0;
+    padding-right: 0;
   }
   .xl\:pt-35 {
     padding-top: 2.1875rem;
@@ -2095,8 +2108,8 @@ button.swiper-pagination-bullet {
   .xl\:pr-0 {
     padding-right: 0;
   }
-  .xl\:pr-172 {
-    padding-right: 10.75rem;
+  .xl\:pl-125 {
+    padding-left: 7.8125rem;
   }
 }
 
