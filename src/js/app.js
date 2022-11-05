@@ -83,3 +83,13 @@ var swiper = new Swiper('.sponsorsSwiper', {
 		clickable: true,
 	},
 });
+
+var targetOffset = $('#sponsors').offset().top;
+
+$(window).on('scroll', function () {
+
+	if ($(window).scrollTop() > targetOffset) {
+		$('body').addClass("overflow-hidden");
+		$('#sponsors').addClass( "vertical-slider-show" );
+	}
+})

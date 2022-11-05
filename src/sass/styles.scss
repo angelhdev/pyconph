@@ -81,4 +81,13 @@ p {
   background: #4A300A !important;
 }
 
+.vertical-slider-show {
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: #FFAD39;
+	z-index: 999;
+	width: 100%;
+}
+
 /* purgecss end ignore */
