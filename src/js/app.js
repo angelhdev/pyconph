@@ -58,6 +58,7 @@ var swiper = new Swiper('.sponsorSwiper', {
 	slidesPerView: 1,
 	spaceBetween: 0,
 	mousewheel: true,
+	invert: true,
 	mousewheel: {
 		forceToAxis: true,
 		sensitivity: 1,
@@ -69,32 +70,33 @@ var swiper = new Swiper('.sponsorSwiper', {
 	},
 });
 
-// swiper.on('reachBeginning', function () {
-// 	swiperReachBeginning = true;
-// 	console.log('reachBeginning');
-// });
+swiper.on('reachBeginning', function () {
+	swiperReachBeginning = true;
+});
 
-// swiper.on('reachEnd', function () {
-// 	swiperReachEnd = true;
+swiper.on('reachEnd', function () {
+	swiperReachEnd = true;
+});
 
-// 	console.log('reachEnd');
-// });
+swiper.on('slideChange', function () {
+	if (swiperReachBeginning) {
+		exitFullSwiperMode();
 
-// swiper.on('slideChange', function () {
-// 	if (swiperReachBeginning) {
-// 		exitFullSwiperMode();
-// 		swiperReachBeginning = false;
-// 	}
+		window.scrollTo({
+			top: getOffset(sponsorSection).top,
+			behavior: 'smooth',
+		});
+	}
 
-// 	if (swiperReachEnd) {
-// 		exitFullSwiperMode();
-// 	}
-// });
+	if (swiperReachEnd || swiper.activeIndex + 1 == swiper.slides.length) {
+		exitFullSwiperMode();
+	}
+});
 
-// document.addEventListener('scroll', (e) => {
-// 	handleSponsorSwiper();
-// 	handleScrollDirection();
-// });
+document.addEventListener('scroll', (e) => {
+	handleSponsorSwiper();
+	handleScrollDirection();
+});
 
 function toggleTab(evt, tabId) {
 	var i, tabcontent, tablinks;
@@ -120,89 +122,63 @@ function toggleTab(evt, tabId) {
 	// evt.currentTarget.className += ' active';
 }
 
-var swiper = new Swiper('.sponsorsSwiper', {
-	direction: 'vertical',
-	slidesPerView: 1,
-	spaceBetween: 0,
-	mousewheel: true,
-	mousewheel: {
-		forceToAxis: true,
-		sensitivity: 1,
-		releaseOnEdges: true,
-	},
-	pagination: {
-		el: '.swiper-pagination',
-		clickable: true,
-	},
-});
+// swiper.on('reachEnd', function () {
+// 	console.log('reached end of slide');
 
-swiper.on('reachEnd', function () {
-	console.log('reached end of slide');
+// 	$('body').removeClass('overflow-hidden');
+// 	$('#sponsors').removeClass('vertical-slider-show');
+// });
 
-	$('body').removeClass('overflow-hidden');
-	$('#sponsors').removeClass('vertical-slider-show');
-});
+// var targetOffset = $('#sponsors').offset().top;
+// var firstLoad = true;
 
-var targetOffset = $('#sponsors').offset().top;
-var firstLoad = true;
+// $(window).on('scroll', function () {
+// 	if (firstLoad && $(window).scrollTop() > targetOffset) {
+// 		$('body').addClass('overflow-hidden');
+// 		$('#sponsors').addClass('vertical-slider-show');
 
-$(window).on('scroll', function () {
-	if (firstLoad && $(window).scrollTop() > targetOffset) {
-		$('body').addClass('overflow-hidden');
-		$('#sponsors').addClass('vertical-slider-show');
+// 		firstLoad = false;
+// 	}
+// });
 
-		firstLoad = false;
-	}
-});
 function enterFullSwiperMode() {
-	var offsets = getOffset(sponsorSection);
-
 	sponsorSection.classList.add('swiper-fixed');
 	sponsorSwiper.classList.remove('touch-none', 'pointer-events-none');
 	document.body.classList.add('overflow-hidden');
-	console.log('enterFullSwiperMode');
-	window.scrollTo(0, offsets.top);
 }
 
 function exitFullSwiperMode() {
-	console.log('exitFullSwiperMode');
-	var offsets = getOffset(sponsorSection);
-
 	sponsorSection.classList.remove('swiper-fixed');
 	sponsorSwiper.classList.add('touch-none', 'pointer-events-none');
 	document.body.classList.remove('overflow-hidden');
-
-	window.scrollTo(0, offsets.top);
 }
 
 function handleScrollDirection() {
 	if (document.body.getBoundingClientRect().top > scrollPos) {
 		scrollDirection = 'up';
-
-		console.log({ swiperReachBeginning, swiperReachEnd });
 	} else {
 		scrollDirection = 'down';
 	}
-
-	swiperReachBeginning = false;
-	swiperReachEnd = false;
 
 	// saves the new position for iteration.
 	scrollPos = document.body.getBoundingClientRect().top;
 }
 
 function handleSponsorSwiper() {
-	var section = document.getElementById('sponsors');
-	var offsets = getOffset(section);
-
+	var offsets = getOffset(sponsorSection);
 	var pageOffset = window.pageYOffset;
 
 	if (
-		!swiperReachEnd &&
 		pageOffset >= offsets.top &&
-		pageOffset <= offsets.top + section.offsetHeight
+		pageOffset <= offsets.top + offsets.height &&
+		!swiperReachEnd
 	) {
+		window.scrollTo(0, offsets.top);
 		enterFullSwiperMode();
+	}
+
+	if (pageOffset < offsets.top) {
+		swiperReachEnd = false;
 	}
 }
 
@@ -211,5 +187,7 @@ function getOffset(el) {
 	return {
 		left: rect.left + window.scrollX,
 		top: rect.top + window.scrollY,
+		height: rect.height,
+		bottom: window.scrollY - rect.height,
 	};
 }
