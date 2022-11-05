@@ -531,6 +531,9 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.pointer-events-none {
+  pointer-events: none;
+}
 .visible {
   visibility: visible;
 }
@@ -716,6 +719,9 @@ video {
 }
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.touch-none {
+  touch-action: none;
 }
 .break-inside-avoid-column {
   -moz-column-break-inside: avoid;
@@ -1824,7 +1830,7 @@ button.swiper-pagination-bullet {
 
 .swiper-pagination-bullet-active {
   height: 30px !important;
-  background: #4A300A !important;
+  background: #4a300a !important;
 }
 
 .swiper-vertical > .swiper-pagination-bullets, .swiper-pagination-vertical.swiper-pagination-bullets {
@@ -1843,6 +1849,15 @@ button.swiper-pagination-bullet {
   background: #FFAD39;
   z-index: 999;
   width: 100%;
+}
+
+.swiper-fixed {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 9999999;
 }
 
 /* purgecss end ignore */
