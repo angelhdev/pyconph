@@ -7,43 +7,6 @@ scrollIcon.addEventListener('click', () => {
 	});
 });
 
-// let tabsContainer = document.querySelector('#tabs');
-// let tabTogglers = tabsContainer.querySelectorAll('#tabs a');
-
-// tabTogglers.forEach(function (toggler) {
-// 	toggler.addEventListener('click', function (e) {
-// 		e.preventDefault();
-
-// 		let tabName = this.getAttribute('href');
-// 		let tabContents = document.querySelector('#tab-contents');
-
-// 		for (let i = 0; i < tabContents.children.length; i++) {
-// 			tabTogglers[i].parentElement.classList.remove(
-// 				'bg-yelloworange',
-// 				'text-white'
-// 			);
-// 			tabTogglers[i].parentElement.classList.add('text-cioccolato');
-// 			tabContents.children[i].classList.remove('hidden');
-
-// 			if ('#' + tabContents.children[i].id === tabName) {
-// 				continue;
-// 			}
-// 			tabContents.children[i].classList.add('hidden');
-// 		}
-
-// 		e.target.parentElement.classList.remove('text-cioccolato');
-// 		e.target.parentElement.classList.add('bg-yelloworange', 'text-white');
-// 	});
-// });
-
-// var targetOffset = $('#sponsors').offset().top;
-
-// var $w = $(window).scroll(function () {
-// 	if ($w.scrollTop() > targetOffset) {
-// 		$('body').css({ overflow: 'hidden' });
-// 	}
-// });
-
 function toggleTab(evt, tabId) {
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName('tabcontent');
@@ -84,12 +47,21 @@ var swiper = new Swiper('.sponsorsSwiper', {
 	},
 });
 
+swiper.on('reachEnd', function () {
+	console.log('reached end of slide');
+
+	$('body').removeClass('overflow-hidden');
+	$('#sponsors').removeClass('vertical-slider-show');
+});
+
 var targetOffset = $('#sponsors').offset().top;
+var firstLoad = true;
 
 $(window).on('scroll', function () {
+	if (firstLoad && $(window).scrollTop() > targetOffset) {
+		$('body').addClass('overflow-hidden');
+		$('#sponsors').addClass('vertical-slider-show');
 
-	if ($(window).scrollTop() > targetOffset) {
-		$('body').addClass("overflow-hidden");
-		$('#sponsors').addClass( "vertical-slider-show" );
+		firstLoad = false;
 	}
-})
+});

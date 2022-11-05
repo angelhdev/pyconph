@@ -637,9 +637,6 @@ video {
 .h-48 {
   height: 3rem;
 }
-.h-96 {
-  height: 6rem;
-}
 .h-22 {
   height: 1.375rem;
 }
@@ -652,11 +649,17 @@ video {
 .h-8 {
   height: 0.5rem;
 }
+.max-h-96 {
+  max-height: 6rem;
+}
 .max-h-full {
   max-height: 100%;
 }
 .min-h-1050 {
   min-height: 65.625rem;
+}
+.min-h-248 {
+  min-height: 15.5rem;
 }
 .w-screen-32 {
   width: calc(100vw - 32px);
@@ -695,11 +698,14 @@ video {
 .w-8 {
   width: 0.5rem;
 }
-.max-w-1280 {
-  max-width: 80rem;
+.max-w-1204 {
+  max-width: 75.25rem;
 }
 .max-w-full {
   max-width: 100%;
+}
+.max-w-1280 {
+  max-width: 80rem;
 }
 .max-w-850 {
   max-width: 53.125rem;
@@ -710,6 +716,10 @@ video {
 }
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.break-inside-avoid-column {
+  -moz-column-break-inside: avoid;
+       break-inside: avoid-column;
 }
 .flex-col {
   flex-direction: column;
@@ -728,6 +738,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.gap-15 {
+  gap: 0.9375rem;
 }
 .gap-5 {
   gap: 0.3125rem;
@@ -816,6 +829,10 @@ video {
   padding-left: 0.9375rem;
   padding-right: 0.9375rem;
 }
+.py-32 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 .py-70 {
   padding-top: 4.375rem;
   padding-bottom: 4.375rem;
@@ -824,21 +841,21 @@ video {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
 }
-.py-12 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
 .px-20 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
+.px-5 {
+  padding-left: 0.3125rem;
+  padding-right: 0.3125rem;
+}
+.py-12 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
 .py-50 {
   padding-top: 3.125rem;
   padding-bottom: 3.125rem;
-}
-.py-32 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
 }
 .py-90 {
   padding-top: 5.625rem;
@@ -854,14 +871,14 @@ video {
 .pt-200 {
   padding-top: 12.5rem;
 }
-.pt-20 {
-  padding-top: 1.25rem;
-}
 .pb-50 {
   padding-bottom: 3.125rem;
 }
 .pt-5 {
   padding-top: 0.3125rem;
+}
+.pt-20 {
+  padding-top: 1.25rem;
 }
 .pb-30 {
   padding-bottom: 1.875rem;
@@ -1810,6 +1827,15 @@ button.swiper-pagination-bullet {
   background: #4A300A !important;
 }
 
+.swiper-vertical > .swiper-pagination-bullets, .swiper-pagination-vertical.swiper-pagination-bullets {
+  top: 70% !important;
+}
+@media (min-width: 768px) {
+  .swiper-vertical > .swiper-pagination-bullets, .swiper-pagination-vertical.swiper-pagination-bullets {
+    top: 50% !important;
+  }
+}
+
 .vertical-slider-show {
   position: fixed;
   top: 0;
@@ -1862,6 +1888,10 @@ button.swiper-pagination-bullet {
   .md\:w-4\/12 {
     width: 33.333333%;
   }
+  .md\:columns-2 {
+    -moz-columns: 2;
+         columns: 2;
+  }
   .md\:flex-row {
     flex-direction: row;
   }
@@ -1879,10 +1909,6 @@ button.swiper-pagination-bullet {
   }
   .md\:border-0 {
     border-width: 0;
-  }
-  .md\:py-32 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
   }
   .md\:px-20 {
     padding-left: 1.25rem;
@@ -1907,6 +1933,10 @@ button.swiper-pagination-bullet {
   .md\:px-50 {
     padding-left: 3.125rem;
     padding-right: 3.125rem;
+  }
+  .md\:py-32 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
   .md\:pt-0 {
     padding-top: 0;
@@ -1950,6 +1980,9 @@ button.swiper-pagination-bullet {
     .md\:bg-img-6 {
       background-image: url("../img/bg/bg-6.svg");
     }
+    .md\:bg-img-7 {
+      background-image: url("../img/bg/bg-7.svg");
+    }
 }
 
 @media (min-width: 1024px) {
@@ -1965,14 +1998,14 @@ button.swiper-pagination-bullet {
   .lg\:mb-18 {
     margin-bottom: 1.125rem;
   }
-  .lg\:w-1\/3 {
-    width: 33.333333%;
-  }
   .lg\:w-1\/4 {
     width: 25%;
   }
   .lg\:w-auto {
     width: auto;
+  }
+  .lg\:w-1\/3 {
+    width: 33.333333%;
   }
   .lg\:max-w-1050 {
     max-width: 65.625rem;
@@ -1982,6 +2015,10 @@ button.swiper-pagination-bullet {
   }
   .lg\:max-w-850 {
     max-width: 53.125rem;
+  }
+  .lg\:columns-3 {
+    -moz-columns: 3;
+         columns: 3;
   }
   .lg\:py-50 {
     padding-top: 3.125rem;
@@ -2011,17 +2048,17 @@ button.swiper-pagination-bullet {
 }
 
 @media (min-width: 1280px) {
+  .xl\:h-290 {
+    height: 18.125rem;
+  }
   .xl\:h-380 {
     height: 23.75rem;
   }
-  .xl\:h-290 {
-    height: 17.5rem;
-  }
-  .xl\:w-380 {
-    width: 23.75rem;
+  .xl\:max-h-380 {
+    max-height: 23.75rem;
   }
   .xl\:w-290 {
-    width: 17.5rem;
+    width: 18.125rem;
   }
   .xl\:w-390 {
     width: 24.375rem;

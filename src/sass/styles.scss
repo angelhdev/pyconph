@@ -81,6 +81,14 @@ p {
   background: #4A300A !important;
 }
 
+.swiper-vertical > .swiper-pagination-bullets, .swiper-pagination-vertical.swiper-pagination-bullets {
+	top: 70% !important;
+
+	@media (min-width: 768px) {
+		top: 50% !important;
+	}
+}
+
 .vertical-slider-show {
 	position: fixed;
 	top: 0;
