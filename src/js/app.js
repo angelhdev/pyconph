@@ -69,32 +69,32 @@ var swiper = new Swiper('.sponsorSwiper', {
 	},
 });
 
-swiper.on('reachBeginning', function () {
-	swiperReachBeginning = true;
-	console.log('reachBeginning');
-});
+// swiper.on('reachBeginning', function () {
+// 	swiperReachBeginning = true;
+// 	console.log('reachBeginning');
+// });
 
-swiper.on('reachEnd', function () {
-	swiperReachEnd = true;
+// swiper.on('reachEnd', function () {
+// 	swiperReachEnd = true;
 
-	console.log('reachEnd');
-});
+// 	console.log('reachEnd');
+// });
 
-swiper.on('slideChange', function () {
-	if (swiperReachBeginning) {
-		exitFullSwiperMode();
-		swiperReachBeginning = false;
-	}
+// swiper.on('slideChange', function () {
+// 	if (swiperReachBeginning) {
+// 		exitFullSwiperMode();
+// 		swiperReachBeginning = false;
+// 	}
 
-	if (swiperReachEnd) {
-		exitFullSwiperMode();
-	}
-});
+// 	if (swiperReachEnd) {
+// 		exitFullSwiperMode();
+// 	}
+// });
 
-document.addEventListener('scroll', (e) => {
-	handleSponsorSwiper();
-	handleScrollDirection();
-});
+// document.addEventListener('scroll', (e) => {
+// 	handleSponsorSwiper();
+// 	handleScrollDirection();
+// });
 
 function toggleTab(evt, tabId) {
 	var i, tabcontent, tablinks;
