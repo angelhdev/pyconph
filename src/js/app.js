@@ -139,7 +139,7 @@ var swiper = new Swiper('.sponsorsSwiper', {
 swiper.on('reachEnd', function () {
 	console.log('reached end of slide');
 
-	$('body').removeClass('overflow-hidden');
+	$('body').removeClass('md:overflow-hidden');
 	$('#sponsors').removeClass('vertical-slider-show');
 });
 
@@ -148,7 +148,7 @@ var firstLoad = true;
 
 $(window).on('scroll', function () {
 	if (firstLoad && $(window).scrollTop() > targetOffset) {
-		$('body').addClass('overflow-hidden');
+		$('body').addClass('md:overflow-hidden');
 		$('#sponsors').addClass('vertical-slider-show');
 
 		firstLoad = false;
