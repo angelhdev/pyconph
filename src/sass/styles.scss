@@ -89,23 +89,6 @@ p {
 	}
 }
 
-.vertical-slider-show {
-	@media (min-width: 768px) {
-		position: fixed;
-		top: 0;
-		right: 0;
-		background: #FFAD39;
-		z-index: 999;
-		width: 100%;
-	}
-}
-
-.md\:overflow-hidden {
-    @include respond-to(768) {
-        overflow: hidden;
-    }
-}
-
 .swiper-fixed {
 	position: fixed;
 	width: 100%;
@@ -114,4 +97,9 @@ p {
 	bottom: 0;
 	z-index: 9999999;
 }
+
+.swiper-pagination {
+	pointer-events: all !important;
+}
+
 /* purgecss end ignore */

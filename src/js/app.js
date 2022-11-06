@@ -117,8 +117,7 @@ function handleSponsorSwiper() {
 	) {
 		window.scrollTo(0, offsets.top);
 
-		if(swiperIndex != 0) swiper.slideTo(0);
-		
+		if(swiperIndex + 1 == swiper.slides.length) swiper.slideTo(0);
 		enterFullSwiperMode();
 	}
 
