@@ -13,3 +13,65 @@
 .tabcontent {
 	display: none;
 }
+
+.tab-slider-wrapper {
+	max-width: 700px;
+	margin: 50px auto;
+	padding: 20px 0;
+	width: 100%;
+
+	.tab-content {
+		padding: 10px 20px;
+	}
+	.nav-tabs-slider a {
+		border: 0 !important;
+		background-color: transparent !important;
+	}
+	.nav-tabs-slider li.active {
+		border-bottom: 2px solid #5453d2;
+	}
+	.nav-tabs-slider li {
+		border-bottom: 2px solid transparent;
+	}
+	.nav-tabs-slider li a {
+		width: 100%;
+		text-align: center;
+	}
+	ul.nav.nav-tabs-slider {
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		overflow: hidden;
+	}
+	.nav-tabs-slider li {
+		// flex-basis: 90px;
+		display: flex;
+		align-items: center;
+		margin: 0 !important;
+	}
+	.tabs-scroller-wrapper {
+		position: relative;
+	}
+	#scroller-btn-left,
+	#scroller-btn-right {
+		position: absolute;
+		height: 30px;
+		width: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		left: -50px;
+		top: 8px;
+		cursor: pointer;
+		color: #ffffff;
+	}
+	#scroller-btn-right {
+		right: -50px;
+		left: unset;
+	}
+	.scroller-btn.inactive {
+		opacity: 0.3;
+		pointer-events: none;
+	}
+}

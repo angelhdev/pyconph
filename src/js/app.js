@@ -24,7 +24,7 @@ function toggleTab(evt, tabId) {
 	evt.currentTarget.classList.add('active');
 }
 
-const filters = document.querySelectorAll('.filter-sponsor');
+var filters = document.querySelectorAll('.filter-sponsor');
 
 filters.forEach((filter) => {
 	filter.addEventListener('click', function () {
@@ -59,3 +59,116 @@ filters.forEach((filter) => {
 		});
 	});
 });
+
+(function () {
+	// your page initialization code here
+	// the DOM will be available here
+
+	var tabScrollerWrap = document.querySelector('.tabs-scroller-wrapper');
+	var tabScroller = document.getElementById('tab-scroller');
+	var scrollerBtn = document.querySelector('.scroller-btn');
+	var scrollerBtnLeft = document.getElementById('scroller-btn-left');
+	var scrollerBtnRight = document.getElementById('scroller-btn-right');
+	var navTabsSlider = document.querySelector('.nav-tabs-slider');
+
+	var tabScrollerWrapWidth = tabScrollerWrap.offsetWidth;
+	var totalWidth = 0;
+
+	var scrollerChildNodes = document.querySelectorAll('#tab-scroller li');
+
+	scrollerChildNodes.forEach(function (child) {
+		totalWidth += child.offsetWidth;
+	});
+
+	if (totalWidth > tabScrollerWrapWidth) {
+		scrollerBtn.classList.remove('inactive');
+	} else {
+		scrollerBtn.classList.add('inactive');
+	}
+
+	if (tabScroller.scrollLeft == 0) {
+		scrollerBtnLeft.classList.add('inactive');
+	} else {
+		scrollerBtnLeft.classList.remove('inactive');
+	}
+
+	scrollerBtnRight.addEventListener('click', function () {
+		scrollTo(navTabsSlider, 0, 200, 300);
+
+		console.log(tabScroller.scrollLeft + ' px');
+	});
+
+	scrollerBtnLeft.addEventListener('click', function () {
+		scrollTo(navTabsSlider, 0, -200, 300);
+	});
+
+	function scrollTo(element, top, left, duration) {
+		var startTop = element.scrollTop;
+		var startLeft = element.scrollLeft;
+		var changeTop = top - startTop;
+		var changeLeft = left - startLeft;
+		var startDate = new Date().getTime();
+
+		var animateScroll = function () {
+			var currentDate = new Date().getTime();
+			var currentTime = currentDate - startDate;
+			element.scrollTop = Math.easeInOutQuad(
+				currentTime,
+				startTop,
+				changeTop,
+				duration
+			);
+			element.scrollLeft = Math.easeInOutQuad(
+				currentTime,
+				startLeft,
+				changeLeft,
+				duration
+			);
+
+			if (currentTime < duration) {
+				requestAnimationFrame(animateScroll);
+			} else {
+				element.scrollTop = top;
+				element.scrollLeft = left;
+			}
+		};
+		animateScroll();
+	}
+
+	Math.easeInOutQuad = function (t, b, c, d) {
+		t /= d / 2;
+		if (t < 1) return (c / 2) * t * t + b;
+		t--;
+		return (-c / 2) * (t * (t - 2) - 1) + b;
+	};
+
+	scrollerHide();
+
+	function scrollerHide() {
+		var tabScroller = document.getElementById('tab-scroller');
+		var scrollerBtnLeft = document.getElementById('scroller-btn-left');
+		var scrollerBtnRight = document.getElementById('scroller-btn-right');
+
+		var scrollLeftPrev = 0;
+
+		tabScroller.addEventListener('scroll', function () {
+			var newScrollLeft = tabScroller.scrollLeft;
+			var width = tabScroller.offsetWidth;
+			var scrollWidth = tabScroller.scrollWidth;
+
+			console.log({ width, newScrollLeft, scrollWidth });
+			if (scrollWidth - newScrollLeft == width) {
+				scrollerBtnRight.classList.add('inactive');
+			} else {
+				scrollerBtnRight.classList.remove('inactive');
+			}
+
+			if (newScrollLeft === 0) {
+				scrollerBtnLeft.classList.add('inactive');
+			} else {
+				scrollerBtnLeft.classList.remove('inactive');
+			}
+			scrollLeftPrev = newScrollLeft;
+		});
+	}
+})();
