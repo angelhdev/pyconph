@@ -67,10 +67,10 @@ p {
 	@apply w-fit text-18 font-medium rounded-full py-5 px-15 mb-15 text-cioccolato;
 }
 
-.filter-sponsor.active-sponsor {
+.filter-sponsor.active {
 	@apply bg-yelloworange text-white;
 }
 
-.list-sponsor .sponsor-logo {
-	@apply  mix-blend-darken justify-center w-half-15 md:w-quarter-15 xl:w-1/6 max-w-180 max-h-80;
+.list-sponsor .item {
+	@apply  w-half-15 md:w-quarter-15 xl:w-1/6 max-w-180 max-h-80;
 }

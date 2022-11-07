@@ -28,14 +28,14 @@ const filters = document.querySelectorAll('.filter-sponsor');
 
 filters.forEach((filter) => {
 	filter.addEventListener('click', function () {
-		var current = document.querySelector('.active-sponsor');
-		current.classList.remove('active-sponsor');
+		var current = document.querySelector('.filter-sponsor.active');
+		current.classList.remove('active');
 
-		this.classList.add('active-sponsor');
+		this.classList.add('active');
 
 		let selectedFilter = filter.getAttribute('data-filter');
 		let itemsToHide = document.querySelectorAll(
-			`.list-sponsor .sponsor-logo:not([data-filter='${selectedFilter}'])`
+			`.list-sponsor .item:not([data-filter='${selectedFilter}'])`
 		);
 		let itemsToShow = document.querySelectorAll(
 			`.list-sponsor [data-filter='${selectedFilter}']`
