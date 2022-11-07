@@ -1,69 +1,10 @@
-// Initial state
-var scrollPos = 0;
-let scrollDirection = '';
-let swiperIsFocused = false;
-let swiperReachEnd = false;
-let swiperReachBeginning = false;
-let swiperIndex = 0;
-
 let scrollIcon = document.querySelector('.icon-scroll');
-let sponsorSection = document.getElementById('sponsors');
-let sponsorSwiper = document.getElementById('sponsors-swiper');
 
 scrollIcon.addEventListener('click', () => {
 	window.scrollTo({
 		top: 0,
 		behavior: 'smooth',
 	});
-});
-
-var swiper = new Swiper('.sponsorSwiper', {
-	direction: 'vertical',
-	slidesPerView: 1,
-	spaceBetween: 0,
-	mousewheel: true,
-	invert: true,
-	mousewheel: {
-		forceToAxis: true,
-		sensitivity: 1,
-		releaseOnEdges: true,
-	},
-	pagination: {
-		el: '.swiper-pagination',
-		clickable: true,
-	},
-});
-
-swiper.on('reachBeginning', function () {
-	swiperReachBeginning = true;
-});
-
-swiper.on('reachEnd', function () {
-	swiperReachEnd = true;
-});
-
-swiper.on('transitionEnd', function () {
-	swiperIndex = swiper.realIndex;
-});
-
-swiper.on('slideChange', function () {
-	if (swiperReachBeginning) {
-		exitFullSwiperMode();
-
-		window.scrollTo({
-			top: getOffset(sponsorSection).top,
-			behavior: 'smooth',
-		});
-	}
-
-	if (swiperReachEnd || swiper.activeIndex + 1 == swiper.slides.length) {
-		exitFullSwiperMode();
-	}
-});
-
-document.addEventListener('scroll', (e) => {
-	handleSponsorSwiper();
-	handleScrollDirection();
 });
 
 function toggleTab(evt, tabId) {
@@ -83,55 +24,38 @@ function toggleTab(evt, tabId) {
 	evt.currentTarget.classList.add('active');
 }
 
-function enterFullSwiperMode() {
-	sponsorSection.classList.add('swiper-fixed');
-	sponsorSwiper.classList.remove('touch-none', 'pointer-events-none');
-	document.body.classList.add('overflow-hidden');
-}
+const filters = document.querySelectorAll('.filter-sponsor');
 
-function exitFullSwiperMode() {
-	sponsorSection.classList.remove('swiper-fixed');
-	sponsorSwiper.classList.add('touch-none', 'pointer-events-none');
-	document.body.classList.remove('overflow-hidden');
-}
+filters.forEach((filter) => {
+	filter.addEventListener('click', function () {
+		var current = document.querySelector('.active-sponsor');
+		current.classList.remove('active-sponsor');
 
-function handleScrollDirection() {
-	if (document.body.getBoundingClientRect().top > scrollPos) {
-		scrollDirection = 'up';
-	} else {
-		scrollDirection = 'down';
-	}
+		this.classList.add('active-sponsor');
 
-	// saves the new position for iteration.
-	scrollPos = document.body.getBoundingClientRect().top;
-}
+		let selectedFilter = filter.getAttribute('data-filter');
+		let itemsToHide = document.querySelectorAll(
+			`.list-sponsor .sponsor-logo:not([data-filter='${selectedFilter}'])`
+		);
+		let itemsToShow = document.querySelectorAll(
+			`.list-sponsor [data-filter='${selectedFilter}']`
+		);
 
-function handleSponsorSwiper() {
-	var offsets = getOffset(sponsorSection);
-	var pageOffset = window.pageYOffset;
+		if (selectedFilter == 'all') {
+			itemsToHide = [];
+			itemsToShow = document.querySelectorAll(
+				'.list-sponsor [data-filter]'
+			);
+		}
 
-	if (
-		pageOffset >= offsets.top &&
-		pageOffset <= offsets.top + offsets.height &&
-		!swiperReachEnd
-	) {
-		window.scrollTo(0, offsets.top);
+		itemsToHide.forEach((el) => {
+			el.classList.add('hidden');
+			el.classList.remove('flex');
+		});
 
-		if(swiperIndex + 1 == swiper.slides.length) swiper.slideTo(0);
-		enterFullSwiperMode();
-	}
-
-	if (pageOffset < offsets.top) {
-		swiperReachEnd = false;
-	}
-}
-
-function getOffset(el) {
-	const rect = el.getBoundingClientRect();
-	return {
-		left: rect.left + window.scrollX,
-		top: rect.top + window.scrollY,
-		height: rect.height,
-		bottom: window.scrollY - rect.height,
-	};
-}
+		itemsToShow.forEach((el) => {
+			el.classList.remove('hidden');
+			el.classList.add('flex');
+		});
+	});
+});
