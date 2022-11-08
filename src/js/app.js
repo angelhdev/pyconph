@@ -60,16 +60,24 @@ filters.forEach((filter) => {
 	});
 });
 
-(function () {
-	// your page initialization code here
-	// the DOM will be available here
+function debounce(func, wait = 100) {
+	let timeout;
+	return function (...args) {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => {
+			func.apply(this, args);
+		}, wait);
+	};
+}
 
+function handleScroll() {
 	var tabScrollerWrap = document.querySelector('.tabs-scroller-wrapper');
 	var tabScroller = document.getElementById('tab-scroller');
-	var scrollerBtn = document.querySelector('.scroller-btn');
+	var scrollerBtn = document.querySelectorAll('.scroller-btn');
 	var scrollerBtnLeft = document.getElementById('scroller-btn-left');
 	var scrollerBtnRight = document.getElementById('scroller-btn-right');
 	var navTabsSlider = document.querySelector('.nav-tabs-slider');
+	let currentScrollLeft = 0;
 
 	var tabScrollerWrapWidth = tabScrollerWrap.offsetWidth;
 	var totalWidth = 0;
@@ -81,9 +89,13 @@ filters.forEach((filter) => {
 	});
 
 	if (totalWidth > tabScrollerWrapWidth) {
-		scrollerBtn.classList.remove('inactive');
+		for (i = 0; i < scrollerBtn.length; i++) {
+			scrollerBtn[i].classList.remove('inactive');
+		}
 	} else {
-		scrollerBtn.classList.add('inactive');
+		for (i = 0; i < scrollerBtn.length; i++) {
+			scrollerBtn[i].classList.add('inactive');
+		}
 	}
 
 	if (tabScroller.scrollLeft == 0) {
@@ -93,47 +105,15 @@ filters.forEach((filter) => {
 	}
 
 	scrollerBtnRight.addEventListener('click', function () {
-		scrollTo(navTabsSlider, 0, 200, 300);
+		currentScrollLeft += 180;
 
-		console.log(tabScroller.scrollLeft + ' px');
+		scrollToLeft(navTabsSlider, 0, currentScrollLeft, 300);
 	});
 
 	scrollerBtnLeft.addEventListener('click', function () {
-		scrollTo(navTabsSlider, 0, -200, 300);
+		currentScrollLeft -= 180;
+		scrollToLeft(navTabsSlider, 0, currentScrollLeft, 300);
 	});
-
-	function scrollTo(element, top, left, duration) {
-		var startTop = element.scrollTop;
-		var startLeft = element.scrollLeft;
-		var changeTop = top - startTop;
-		var changeLeft = left - startLeft;
-		var startDate = new Date().getTime();
-
-		var animateScroll = function () {
-			var currentDate = new Date().getTime();
-			var currentTime = currentDate - startDate;
-			element.scrollTop = Math.easeInOutQuad(
-				currentTime,
-				startTop,
-				changeTop,
-				duration
-			);
-			element.scrollLeft = Math.easeInOutQuad(
-				currentTime,
-				startLeft,
-				changeLeft,
-				duration
-			);
-
-			if (currentTime < duration) {
-				requestAnimationFrame(animateScroll);
-			} else {
-				element.scrollTop = top;
-				element.scrollLeft = left;
-			}
-		};
-		animateScroll();
-	}
 
 	Math.easeInOutQuad = function (t, b, c, d) {
 		t /= d / 2;
@@ -143,32 +123,67 @@ filters.forEach((filter) => {
 	};
 
 	scrollerHide();
+}
 
-	function scrollerHide() {
-		var tabScroller = document.getElementById('tab-scroller');
-		var scrollerBtnLeft = document.getElementById('scroller-btn-left');
-		var scrollerBtnRight = document.getElementById('scroller-btn-right');
+function scrollToLeft(element, top, left, duration) {
+	var startTop = element.scrollTop;
+	var startLeft = element.scrollLeft;
+	var changeTop = top - startTop;
+	var changeLeft = left - startLeft;
+	var startDate = new Date().getTime();
 
-		var scrollLeftPrev = 0;
+	var animateScroll = function () {
+		var currentDate = new Date().getTime();
+		var currentTime = currentDate - startDate;
+		element.scrollTop = Math.easeInOutQuad(
+			currentTime,
+			startTop,
+			changeTop,
+			duration
+		);
+		element.scrollLeft = Math.easeInOutQuad(
+			currentTime,
+			startLeft,
+			changeLeft,
+			duration
+		);
 
-		tabScroller.addEventListener('scroll', function () {
-			var newScrollLeft = tabScroller.scrollLeft;
-			var width = tabScroller.offsetWidth;
-			var scrollWidth = tabScroller.scrollWidth;
+		if (currentTime < duration) {
+			requestAnimationFrame(animateScroll);
+		} else {
+			element.scrollTop = top;
+			element.scrollLeft = left;
+		}
+	};
 
-			console.log({ width, newScrollLeft, scrollWidth });
-			if (scrollWidth - newScrollLeft == width) {
-				scrollerBtnRight.classList.add('inactive');
-			} else {
-				scrollerBtnRight.classList.remove('inactive');
-			}
+	animateScroll();
+}
 
-			if (newScrollLeft === 0) {
-				scrollerBtnLeft.classList.add('inactive');
-			} else {
-				scrollerBtnLeft.classList.remove('inactive');
-			}
-			scrollLeftPrev = newScrollLeft;
-		});
-	}
-})();
+function scrollerHide() {
+	var tabScroller = document.getElementById('tab-scroller');
+	var scrollerBtnLeft = document.getElementById('scroller-btn-left');
+	var scrollerBtnRight = document.getElementById('scroller-btn-right');
+
+	tabScroller.addEventListener('scroll', function () {
+		var newScrollLeft = tabScroller.scrollLeft;
+		var width = tabScroller.offsetWidth;
+		var scrollWidth = tabScroller.scrollWidth;
+
+		if (scrollWidth - newScrollLeft == width) {
+			scrollerBtnRight.classList.add('inactive');
+		} else {
+			scrollerBtnRight.classList.remove('inactive');
+		}
+
+		if (newScrollLeft === 0) {
+			scrollerBtnLeft.classList.add('inactive');
+		} else {
+			scrollerBtnLeft.classList.remove('inactive');
+		}
+	});
+}
+
+const debounced = debounce(handleScroll, 500);
+window.addEventListener('resize', debounced);
+
+handleScroll();

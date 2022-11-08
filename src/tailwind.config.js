@@ -82,7 +82,7 @@ module.exports = {
 				50: '3.125rem',
 				68: '4.25rem',
 				70: '4.375rem',
-				80: '5rem', 
+				80: '5rem',
 				90: '5.625rem',
 				96: '6rem',
 				102: '6.375rem',
@@ -91,7 +91,7 @@ module.exports = {
 				172: '10.75rem',
 				180: '11.25rem',
 				200: '12.5rem',
-				225: '14.063rem', 
+				225: '14.063rem',
 				248: '15.5rem',
 				280: '17.5rem',
 				290: '18.125rem',
@@ -110,7 +110,7 @@ module.exports = {
 				1280: '80rem',
 				'screen-32': 'calc(100vw - 32px)',
 				'half-15': 'calc(50% - 15px)',
-				'quarter-15': 'calc(25% - 15px)'
+				'quarter-15': 'calc(25% - 15px)',
 			},
 			fontFamily: {
 				ubuntu: 'Ubuntu',
@@ -135,6 +135,7 @@ module.exports = {
 			}),
 			inset: (theme) => ({
 				...theme('spacing'),
+				'-50': '-3.125rem',
 			}),
 			lineHeight: (theme) => ({
 				...defaultTheme.lineHeight,
@@ -146,6 +147,10 @@ module.exports = {
 			}),
 			borderWidth: (theme) => ({
 				...theme('spacing'),
+			}),
+			borderRadius: (theme) => ({
+				...defaultTheme.borderRadius,
+				half: '50%',
 			}),
 		},
 	},
